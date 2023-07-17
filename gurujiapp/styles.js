@@ -3,62 +3,67 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    padding: 20,
-  },
-  formContainer: {
-    alignItems: 'center',
-  },
-  input: {
-    height: 40,
-    width: '100%',
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginTop: 20,
-    padding: 10,
-  },
-  submitButton: {
-    backgroundColor: '#4287f5',
-    padding: 10,
-    marginTop: 20,
-    alignItems: 'center',
-  },
-  submitButtonText: {
-    color: 'white',
-    fontSize: 18,
   },
   loadingOverlay: {
-    ...StyleSheet.absoluteFill,
-    backgroundColor: 'rgba(0,0,0,0.4)',
-    alignItems: 'center',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
     justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255,255,255,0.8)',
+    zIndex: 2,
+  },
+  formContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 10,
   },
   crossButton: {
     position: 'absolute',
     right: 20,
-    top: 40,
+    top: 20,
+    padding: 5,
+    borderRadius: 50,
     backgroundColor: 'red',
-    borderRadius: 15,
-    width: 30,
-    height: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 100,
+    zIndex: 1
   },
   crossButtonText: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold',
+    fontSize: 14,
+    color: 'white'
   },
-  errorText: {
-    color: 'red',
-    marginBottom: 15,
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+    width: '100%'
+  },
+  submitButton: {
+    backgroundColor: 'green',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 5,
+    marginTop: 10
+  },
+  submitButtonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold'
   },
   noteText: {
-    marginTop: 20,
-    fontSize: 16,
-    color: 'black',
+    fontSize: 14,
+    color: '#333',
+    marginTop: 10,
+    textAlign: 'center'
   },
+  errorText: {
+    fontSize: 14,
+    color: 'red',
+    marginBottom: 10
+  }
 });
 
 export default styles;
