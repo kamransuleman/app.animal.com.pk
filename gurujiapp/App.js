@@ -2,10 +2,11 @@ import React, {useState, useEffect} from 'react';
 import {WebView} from 'react-native-webview';
 import {View, Alert} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import styles from './styles';
 import URLForm from './components/URLForm';
 import CrossButton from './components/CrossButton';
 import LoadingOverlay from './components/LoadingOverlay';
+import styles from './styles';
+
 
 const App = () => {
   const [url, setUrl] = useState('');
