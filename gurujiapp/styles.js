@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#ffffff', // Use the color code for white background
   },
   loadingOverlay: {
     position: 'absolute',
@@ -28,18 +29,21 @@ const styles = StyleSheet.create({
     padding: 5,
     borderRadius: 50,
     backgroundColor: 'red',
-    zIndex: 1
+    zIndex: 1,
+    elevation: 1
   },
   crossButtonText: {
-    fontSize: 14,
-    color: 'white'
+    fontSize: 20,
+    color: '#ffffff'
   },
   input: {
-    height: 40,
+    height: 50,
     margin: 12,
     borderWidth: 1,
+    borderColor: '#000000', // Set the border color to black (#000000)
     padding: 10,
-    width: '100%'
+    color: '#000000', // Set the text color to black (#000000)
+    width: '100%',
   },
   submitButton: {
     backgroundColor: 'green',
@@ -49,7 +53,7 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   submitButtonText: {
-    color: 'white',
+    color: '#ffffff',
     fontSize: 16,
     fontWeight: 'bold'
   },
@@ -61,7 +65,7 @@ const styles = StyleSheet.create({
   },
   errorText: {
     fontSize: 14,
-    color: 'red',
+    color: '#FF0000',
     marginBottom: 10
   }
 });

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useLayoutEffect} from 'react';
 import {WebView} from 'react-native-webview';
 import {View, Alert} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -7,18 +7,20 @@ import CrossButton from './components/CrossButton';
 import LoadingOverlay from './components/LoadingOverlay';
 import styles from './styles';
 
-
 const App = () => {
   const [url, setUrl] = useState('');
   const [storedUrl, setStoredUrl] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [hideCross, setHideCross] = useState(false);
   const [error, setError] = useState(null);
+  const savedUrl =  AsyncStorage.getItem('url');
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const fetchUrl = async () => {
       const url = await AsyncStorage.getItem('url');
       setStoredUrl(url);
+      setHideCross(!!url); // Set hideCross to true if URL is stored
+      setIsLoading(false)
     };
     fetchUrl();
   }, []);
@@ -50,9 +52,7 @@ const App = () => {
       return;
     }
     setIsLoading(true);
-    await AsyncStorage.setItem('url', url);
-    setIsLoading(false);
-    setStoredUrl(url);
+
   };
 
   const handleUrlClear = async () => {
@@ -75,20 +75,24 @@ const App = () => {
 
   const handleLoadEnd = async () => {
     setIsLoading(false);
-    Alert.alert('Save App', 'Do you want to save this app?', [
-      {
-        text: 'No',
-        onPress: () => {}, // Do nothing on 'No'
-        style: 'cancel',
-      },
-      {
-        text: 'Yes',
-        onPress: () => {
-          setHideCross(true);
-          Alert.alert('Success', 'You have successfully created your app.');
+  
+      Alert.alert('Save App', 'Do you want to save this app?', [
+        {
+          text: 'No',
+          onPress: () => {}, // Do nothing on 'No'
+          style: 'cancel',
         },
-      },
-    ]);
+        {
+          text: 'Yes',
+          onPress: async() => {
+            setHideCross(true);
+            await AsyncStorage.setItem('url', url);
+            setStoredUrl(url);
+            Alert.alert('Success', 'You have successfully created your app.');
+          },
+        },
+      ]);
+    
   };
 
   return (
@@ -104,12 +108,15 @@ const App = () => {
           />
         </>
       ) : (
+        <>
+        {!isLoading &&
         <URLForm
           error={error}
           url={url}
           onChange={handleUrlChange}
           onSubmit={handleSubmit}
-        />
+        />}
+        </>
       )}
     </View>
   );

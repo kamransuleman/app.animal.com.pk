@@ -4,11 +4,13 @@ import styles from '../styles';
 
 const URLForm = ({ error, url, onChange, onSubmit }) => (
   <View style={styles.formContainer}>
-    <Text style={{ fontSize: 50, fontWeight: 'bold', marginBottom: 20 }}>Mobile App</Text>
+    <Text style={{ fontSize: 50, fontWeight: 'bold', marginBottom: 20,color:'#000000' }}>MOBILE APP</Text>
     {error && <Text style={styles.errorText}>{error}</Text>}
     <TextInput
       placeholder="Please enter URL to convert to app"
       value={url}
+      placeholderTextColor="#000000" // Set the placeholder text color
+
       onChangeText={onChange}
       onSubmitEditing={onSubmit}
       style={styles.input}
